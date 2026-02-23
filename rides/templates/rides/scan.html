@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Auto</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 16px; }
+    .card { max-width: 420px; margin: 0 auto; border: 1px solid #ddd; border-radius: 12px; padding: 16px; }
+    .btn { display:block; width:100%; padding:16px; font-size:18px; border-radius:10px; border:0; margin-top:12px; }
+    .start { background:#111; color:#fff; }
+    .stop { background:#b00020; color:#fff; }
+    .muted { color:#666; font-size:14px; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    {% if active %}
+      <h2>Er rijdt iemand</h2>
+      <p><strong>{{ active.get_driver_display }}</strong> is gestart om {{ active.started_at|date:"d/m H:i" }}.</p>
+
+      <form method="post" action="{% url 'rides:stop' %}">
+        {% csrf_token %}
+        <button class="btn stop" type="submit">STOP</button>
+      </form>
+
+      <p class="muted">Scan opnieuw en druk STOP om te stoppen.</p>
+    {% else %}
+      <h2>Wie gaat rijden?</h2>
+
+      <form method="post" action="{% url 'rides:start' 'THIBEAU' %}">
+        {% csrf_token %}
+        <button class="btn start" type="submit">Thibeau</button>
+      </form>
+
+      <form method="post" action="{% url 'rides:start' 'HENRI' %}">
+        {% csrf_token %}
+        <button class="btn start" type="submit">Henri</button>
+      </form>
+
+      <form method="post" action="{% url 'rides:start' 'MAX' %}">
+        {% csrf_token %}
+        <button class="btn start" type="submit">Max</button>
+      </form>
+
+      <p class="muted">Scan QR → tik je naam → klaar.</p>
+    {% endif %}
+  </div>
+</body>
+</html>
