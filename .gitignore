@@ -1,15 +1,18 @@
-# Python / Django
+# Python
 __pycache__/
 *.py[cod]
-*.sqlite3
+
+# Django / database
 db.sqlite3
+*.sqlite3
 *.log
+media/
 
 # Virtual env
 .venv/
 venv/
 
-# Django collected static
+# Static collected
 staticfiles/
 
 # IDE
