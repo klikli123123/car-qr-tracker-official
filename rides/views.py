@@ -1,16 +1,13 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.views.decorators.http import require_POST
+from django.http import HttpResponse
 
 from .models import Ride
 
-from django.http import HttpResponse
 
 def healthz(request):
     return HttpResponse("ok")
-
-def scan(request):
-    return HttpResponse("scan ok")
 
 
 def get_active_ride():
@@ -32,30 +29,22 @@ def start_ride(request, driver: str):
     driver = driver.upper()
 
     if driver not in ("THIBEAU", "HENRI", "MAX"):
-        return redirect("rides:scan")
+        return redirect("scan")  # als je geen namespace gebruikt
 
     if get_active_ride() is not None:
-        # Er rijdt al iemand, dus geen nieuwe starten
-        return redirect("rides:scan")
+        return redirect("scan")
 
     Ride.objects.create(driver=driver, started_at=timezone.now())
-    return redirect("rides:scan")
+    return redirect("scan")
 
 
 @require_POST
 def stop_ride(request):
     active = get_active_ride()
     if active is None:
-        return redirect("rides:scan")
+        return redirect("scan")
 
     active.ended_at = timezone.now()
     active.save(update_fields=["ended_at"])
-    return redirect("rides:scan")
-
-
-from django.shortcuts import render
-
-def scan(request):
-    return HttpResponse("home ok")
-
+    return redirect("scan")
 # Create your views here.
