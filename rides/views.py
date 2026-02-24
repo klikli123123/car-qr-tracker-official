@@ -9,6 +9,9 @@ from django.http import HttpResponse
 def healthz(request):
     return HttpResponse("ok")
 
+def scan(request):
+    return HttpResponse("scan works")
+
 
 def get_active_ride():
     return Ride.objects.filter(ended_at__isnull=True).order_by("-started_at").first()
