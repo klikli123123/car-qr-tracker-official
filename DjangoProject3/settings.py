@@ -27,7 +27,12 @@ import os
 
 DEBUG = os.getenv("DEBUG", "0") == "1"
 
-ALLOWED_HOSTS = ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = [
+    "car-qr-tracker-official-1.onrender.com",
+    ".onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
