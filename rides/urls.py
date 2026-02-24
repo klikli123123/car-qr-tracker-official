@@ -8,7 +8,7 @@ from . import views
 
 urlpatterns = [
     path("healthz/", views.healthz, name="healthz"),
-    path("", views.scan, name="scan"),
+    path("", views.scan, name="scan"),   # 👈 dit moet hier staan
     path("start/<str:driver>/", views.start_ride, name="start"),
     path("stop/", views.stop_ride, name="stop"),
 ]
