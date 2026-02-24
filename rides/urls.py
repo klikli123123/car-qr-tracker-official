@@ -12,3 +12,4 @@ urlpatterns = [
     path("start/<str:driver>/", views.start_ride, name="start"),
     path("stop/", views.stop_ride, name="stop"),
 ]
+
