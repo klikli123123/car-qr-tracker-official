@@ -4,6 +4,11 @@ from django.views.decorators.http import require_POST
 
 from .models import Ride
 
+from django.http import HttpResponse
+
+def healthz(request):
+    return HttpResponse("ok")
+
 
 def get_active_ride():
     return Ride.objects.filter(ended_at__isnull=True).order_by("-started_at").first()
