@@ -55,4 +55,7 @@ def stop_ride(request):
 
 from django.shortcuts import render
 
+def scan(request):
+    return HttpResponse("home ok")
+
 # Create your views here.
