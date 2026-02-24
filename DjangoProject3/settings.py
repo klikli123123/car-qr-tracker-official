@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-hyc@x$l6e3&k8-ko*c)(r6_1@ayj=r_-h_welnhias%%sc9nr9
 # SECURITY WARNING: don't run with debug turned on in production!
 import os
 
-DEBUG = os.getenv("DEBUG", "0") == "1"
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "car-qr-tracker-official-1.onrender.com",
