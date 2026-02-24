@@ -10,7 +10,7 @@ def healthz(request):
     return HttpResponse("ok")
 
 def scan(request):
-    return HttpResponse("scan works")
+    return HttpResponse("scan ok")
 
 
 def get_active_ride():
