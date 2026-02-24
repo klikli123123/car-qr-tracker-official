@@ -29,22 +29,22 @@ def start_ride(request, driver: str):
     driver = driver.upper()
 
     if driver not in ("THIBEAU", "HENRI", "MAX"):
-        return redirect("scan")  # als je geen namespace gebruikt
+        return redirect("rides:scan")  # als je geen namespace gebruikt
 
     if get_active_ride() is not None:
         return redirect("scan")
 
     Ride.objects.create(driver=driver, started_at=timezone.now())
-    return redirect("scan")
+    return redirect("rides:scan")
 
 
 @require_POST
 def stop_ride(request):
     active = get_active_ride()
     if active is None:
-        return redirect("scan")
+        return redirect("rides:scan")
 
     active.ended_at = timezone.now()
     active.save(update_fields=["ended_at"])
-    return redirect("scan")
+    return redirect("rides:scan")
 # Create your views here.
